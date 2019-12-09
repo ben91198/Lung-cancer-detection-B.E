@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <form  method = "post" enctype="multipart/form-data">
+        <button type="submit" formaction="\view_raw" >View Raw Images</button>
+        <button type="submit" formaction="\preprocessed">View Pre-Processed Images</button>
+        <button type="submit" formaction="\getResult">Results</button>
+    </form>
+    {% if title == "v_raw" %}
+        {% for image_name in image_names %}
+            <img src = "{{ url_for('send_image',filename=image_name) }}">
+        {% endfor %}
+    {% elif title == "pre_processed" %}
+        {% for image_name in image_names %}
+            <img src = "{{ url_for('send_image_res',filename=image_name) }}">
+        {% endfor %}
+        <br>
+        <img src = "{{ url_for('send_image_3D',filename="3D_model.png")}}">
+    {% elif title == "results" %}
+    {% endif %}
+</body>
+</html>
